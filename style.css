@@ -1,3 +1,45 @@
 main {
     padding-top: 2%;
 }
+
+#searchPanel {
+    position: fixed;
+    display: inline-block;
+    height: 100vh;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#resultsPanel {
+    position: relative;
+    height: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#currentCityContainer {
+    height: 60vh;
+    position: relative;
+    display: block;
+    align-items: center;
+    margin: auto;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: 3s;
+    background-image: url();
+    z-index: -1;
+}
+
+#fiveDay {
+    position: relative;
+    height: 40vh;
+    display: block;
+}
+
+#currentCityCard {
+    padding: auto;
+    width: 30%;
+    margin: auto;
+}

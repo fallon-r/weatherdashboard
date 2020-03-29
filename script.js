@@ -1,22 +1,18 @@
 var uSearches = [];
-var uCity;
 var key = "0cfb89d7960d5eaeceaeda6dff8c4963";
-var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + uCity + "&appid=" + key;
-
+var uCity;
+var queryURL;
 
 
 $("#searchBtn").click(function(event) {
     event.preventDefault();
-    var uCity = $("#uCitySearch").val();
-    getWeather();
+    uCity = $("#uCitySearch").val();
     queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + uCity + "&appid=" + key;
-    // uSearches.push(uCity);
-    // localStorage.setItem("savedUserSearches", JSON.stringify(uSearches));
-    console.log("Search Button worked")
-    console.log(uCity);
+    getWeather();
+
+    // Pushes searches to array
+    uSearches.push(uCity);
 });
-
-
 
 function getWeather() {
     $(document).ready(function() {
@@ -26,7 +22,13 @@ function getWeather() {
             method: "GET"
         }).then(function(response) {
             console.log(response);
+            $("#currentCity").text(response.name)
+            $("#currentTemp").text(tempConvert(response.main.temp))
         });
     });
 
+};
+
+function tempConvert(valNum) {
+    valNum = ((valNum - 273.15) * 1.8) + 32;
 };
