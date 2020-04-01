@@ -1,45 +1,81 @@
-main {
-    padding-top: 2%;
-}
-
-#searchPanel {
-    position: fixed;
-    display: inline-block;
-    height: 100vh;
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-#resultsPanel {
-    position: relative;
-    height: 100%;
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-#currentCityContainer {
-    height: 60vh;
-    position: relative;
-    display: block;
-    align-items: center;
-    margin: auto;
-    background-size: cover;
-    background-repeat: no-repeat;
-    transition: 3s;
-    background-image: url();
-    z-index: -1;
-}
-
-#fiveDay {
-    position: relative;
-    height: 40vh;
-    display: block;
-}
-
-#currentCityCard {
-    padding: auto;
-    width: 30%;
-    margin: auto;
-}
+    body {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+    }
+    
+    main {
+        flex: 1 0 auto;
+    }
+    
+    nav {
+        top: 0;
+        position: fixed;
+        overflow: hidden;
+    }
+    
+    .collection-header {
+        margin: auto;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    
+    .collection-item {
+        width: 100%;
+    }
+    
+    .collection {
+        flex-direction: column;
+    }
+    
+    #uCitySearch {
+        color: white;
+    }
+    
+    #searchPanel {
+        padding-top: 10vh;
+        height: 100%;
+        display: inline-block;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        overflow-x: hidden;
+        flex-direction: column;
+    }
+    
+    #resultsPanel {
+        height: 100%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        right: 0;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    #currentDayPanel {
+        display: block;
+        padding-top: 20%;
+        min-height: 70vh;
+        flex-direction: column;
+        height: 60vh;
+        align-items: center;
+    }
+    
+    #currentWeatherCard {
+        margin: auto;
+        max-width: 40%;
+        display: flexbox;
+    }
+    
+    footer {
+        display: inline-block;
+        position: sticky;
+        height: 10vh;
+        min-height: 10vh;
+        width: 100%;
+        margin: auto;
+        padding: auto;
+    }

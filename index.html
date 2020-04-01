@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
@@ -16,81 +18,108 @@
     <title>Weather Dashboard</title>
 </head>
 
-<!-- Navbar -->
-<nav>
-    <div class="nav-wrapper teal">
-        <a href="#" class="brand-logo center"><i class="material-icons large">cloudy</i> Weather Dashboard</a>
-    </div>
-</nav>
+
+
 
 <body>
-    <div class="row">
-        <!-- Search bar/Prev Searches -->
-        <div class="col s3 grey center-align" id="searchPanel">
-            <form>
+    <main>
 
-                <input type="search " placeholder="search " id="uCitySearch" class="autocomplete">
-                <button class="btn waves-effect waves-green " type="submit " name="action " id="searchBtn">Search
-                    <i class="material-icons right ">search</i>
-                </button>
-            </form>
-            <div class="row">
-                <div class="card blue-white"></div>
-            </div>
-            <div class="row">
-                <div class="card blue-white"></div>
-            </div>
-            <div class="row">
-                <div class="card blue-white"></div>
-            </div>
-            <div class="row">
-                <div class="card blue-white"></div>
-            </div>
-            <div class="row">
-                <div class="card blue-white"></div>
-            </div>
+        <!-- navbar with no link -->
+        <div class="navbar-fixed">
+
+            <nav class="teal text-white flow-text">
+                <div class="nav-wrapper  z-depth-3">
+                    <a href="!#" class="brand-logo center valign-wrapper">
+                        <h4 class="text-white flow-text"> Weather Dashboard</h4>
+                    </a>
+
+                </div>
+
+
+            </nav>
         </div>
-        <!-- Results panel => current day and 5 day -->
-        <div class="col s9 push-s3 z-depth-3" id="resultsPanel">
-            <div class="row">
-                <!-- Current City Location -->
-                <div class="container center-align valign-wrapper" id="currentCityContainer">
-                    <div class="card-medium z-depth-1 hoverable center-align" id="currentCityCard">
-                        <div class="card-content">
-                            <div class="card-title flow-text" id="currentCity">
+
+        <div class="row">
+            <!-- Search bar/Prev Searches -->
+            <div class="col s5 m5 l4 grey darken-2 center-align" id="searchPanel">
+                <div class="row">
+                    <div class="container">
+
+                        <div class="input-field col s12">
+
+                            <input type="text" id="uCitySearch" class="autocomplete">
+                            <label for="uCitySearch" class="text-white">City Search</label>
+                        </div>
+                        <!-- search button -->
+                        <button class="btn waves-effect waves-light" type="submit" name="action" id="searchBtn">Search
+                            <i class="material-icons right">search</i>
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- Previous cities -->
+                <div class="row">
+
+                    <div class="collection with-header">
+                        <ul class="collection-header grey lighten-1" style="padding-top: auto; padding-bottom:auto; padding-left:0; padding-right:0">
+                            <h5 class="text-white center-align flow-text" style="margin-top:0; margin-bottom:2vh">
+                                Previous Searches</h5>
+                            <li class="collection-item grey lighten-2 text-white flow-text"></li>
+                            <li class="collection-item grey lighten-2 text-white flow-text"></li>
+                            <li class="collection-item grey lighten-2 text-white flow-text"></li>
+                            <li class="collection-item grey lighten-2 text-white flow-text"></li>
+                            <li class="collection-item grey lighten-2 text-white flow-text"></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- results panel; current city & 5 day forecast -->
+            <div class="col s7 m7 l8 blue right" id="resultsPanel">
+                <!-- current day card holder   -->
+                <div class="row valign-wrapper ">
+
+                    <div class="center-align z-depth-3 white" id="currentDayPanel">
+                        <div class="center-align">
+
+                            <div class="card blue-grey darken-1" id="currentWeatherCard">
+                                <div class="card-content white-text">
+                                    <span class="card-title flow-text"><h6 class="flow-text" id="currentCity"></h6></span>
+                                    
+                                </div>
 
                             </div>
-                            <h6 id="currentTemp"></h6>
                         </div>
                     </div>
 
+
+
+
                 </div>
+
+
+
+
             </div>
-            <!-- <div class="divider"></div>
-            <div class="row">
-                <div class="container" id="fiveDay">
-                    <div class="col">
-                        <div class="card small z-depth-2"></div>
-                    </div>
-                    <div class="col">
-                        <div class="card small z-depth-2"></div>
-                    </div>
-                    <div class="col">
-                        <div class="card small z-depth-2"></div>
-                    </div>
-                    <div class="col">
-                        <div class="card small z-depth-2"></div>
-                    </div>
-                    <div class="col">
-                        <div class="card small z-depth-2"></div>
 
-                    </div>
-                </div>
-            </div> -->
+
+
         </div>
-    </div>
 
 
+        </div>
+
+    </main>
+    <!-- <footer class="page-footer teal text-white flow-text center-align">
+
+        <div class="footer-copyright">
+            <div class="container">
+                © ryan fallon
+            </div>
+        </div>
+    </footer> -->
     <!-- jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js "></script>
 
