@@ -4,130 +4,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <title>Weather Dashboard</title>
+    <!-- Fuzzy Search Library -->
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js"></script>
 
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-    <!-- Icons -->
+    <!-- icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <!-- external CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
 
-    <title>Weather Dashboard</title>
 </head>
 
-
-
-
 <body>
+    <nav class="teal lighten-1" role="navigation">
+        <div class="nav-wrapper">
+            <div class="container valign-wrapper" id="navContent">
+
+
+                <a href="#" class="brand-logo center fluid-text"><i class="material-icons">cloud</i>Weather Dashboard</a>
+                <a href="#" class="left btn-small btn-floating white waves-effect waves-light tooltipped sidenav-trigger show-on-large" data-postion="right" data-tooltip="Search for your city" data-target="slide-out"><i class="material-icons teal-text">search</i></a>
+            </div>
+        </div>
+    </nav>
+
     <main>
-
-        <!-- navbar with no link -->
-        <div class="navbar-fixed">
-
-            <nav class="teal text-white flow-text">
-                <div class="nav-wrapper  z-depth-3">
-                    <a href="!#" class="brand-logo center valign-wrapper">
-                        <h4 class="text-white flow-text"> Weather Dashboard</h4>
-                    </a>
-
-                </div>
-
-
-            </nav>
-        </div>
-
-        <div class="row">
-            <!-- Search bar/Prev Searches -->
-            <div class="col s5 m5 l4 grey darken-2 center-align" id="searchPanel">
+        <ul id="slide-out" class="sidenav">
+            <div class="container">
                 <div class="row">
-                    <div class="container">
 
-                        <div class="input-field col s12">
-
-                            <input type="text" id="uCitySearch" class="autocomplete">
-                            <label for="uCitySearch" class="text-white">City Search</label>
+                    <form action="">
+                        <div class="input-field">
+                            <input type="search" autocomplete="off" placeholder="Search For your city" id="uCitySearch">
+                            <button class="teal white-text btn-small btn-floating" type="submit" id="searchBtn"><i class="material-icons">search</i></button>
                         </div>
-                        <!-- search button -->
-                        <button class="btn waves-effect waves-light" type="submit" name="action" id="searchBtn">Search
-                            <i class="material-icons right">search</i>
-                        </button>
-                    </div>
-
+                    </form>
                 </div>
+                <div class="row"></div>
+                <div class="row"></div>
+                <div class="row"></div>
+                <div class="row"></div>
+                <div class="row"></div>
 
-                <!-- Previous cities -->
-                <div class="row">
 
-                    <div class="collection with-header">
-                        <ul class="collection-header grey lighten-1" style="padding-top: auto; padding-bottom:auto; padding-left:0; padding-right:0">
-                            <h5 class="text-white center-align flow-text" style="margin-top:0; margin-bottom:2vh">
-                                Previous Searches</h5>
-                            <li class="collection-item grey lighten-2 text-white flow-text"></li>
-                            <li class="collection-item grey lighten-2 text-white flow-text"></li>
-                            <li class="collection-item grey lighten-2 text-white flow-text"></li>
-                            <li class="collection-item grey lighten-2 text-white flow-text"></li>
-                            <li class="collection-item grey lighten-2 text-white flow-text"></li>
-                        </ul>
+        </ul>
+        </div>
+        <div class="container center-align">
+            <div class="row">
+
+                <div class="card" id="currentWeatherCard">
+                    <div class="card-content">
+                        <h1 class="card-title  grey-text text-darken-4 flow-text" id="currentCity"></h1>
+                        <h4 class="flow-text" id="currentTemp"></h4>
+                        <h3 id="currentHumidity" class="flow-text"></h3>
+
+                        <h5 id="currentConditions" class="flow-text"></h5>
+                        <h4 id="currentWindSpeed" class="flow-text"></h4>
+                        <h3 id="currentUV" class="flow-text"></h3>
                     </div>
-
                 </div>
 
             </div>
-            <!-- results panel; current city & 5 day forecast -->
-            <div class="col s7 m7 l8 blue right" id="resultsPanel">
-                <!-- current day card holder   -->
-                <div class="row valign-wrapper ">
+            <div class="row" id="forecastCards">
 
-                    <div class="center-align z-depth-3 white" id="currentDayPanel">
-                        <div class="center-align">
-
-                            <div class="card blue-grey darken-1" id="currentWeatherCard">
-                                <div class="card-content white-text">
-                                    <span class="card-title flow-text"><h6 class="flow-text" id="currentCity"></h6></span>
-                                    
-                                </div>
-
-                            </div>
+                <div class="col s2">
+                    <div class="card-panel z-depth-2 pink">
+                        <div class="card-content">
+                            <h6 class="card-title" id="weatherCardDay1"></h6>
                         </div>
                     </div>
-
-
-
-
                 </div>
-
-
-
-
+                <div class="col s2">
+                    <div class="card-panel z-depth-2 pink">
+                        <div class="card-content">
+                            <h6 class="card-title" id="weatherCardDay2"></h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s2">
+                    <div class="card-panel z-depth-2 pink">
+                        <div class="card-content">
+                            <h6 class="card-title" id="weatherCardDay3"></h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s2">
+                    <div class="card-panel z-depth-2 pink">
+                        <div class="card-content">
+                            <h6 class="card-title" id="weatherCardDay4"></h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s2">
+                    <div class="card-panel z-depth-2 pink">
+                        <div class="card-content">
+                            <h6 class="card-title" id="weatherCardDay5"></h6>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-
+        </div>
 
         </div>
 
-
-        </div>
 
     </main>
-    <!-- <footer class="page-footer teal text-white flow-text center-align">
 
-        <div class="footer-copyright">
-            <div class="container">
-                © ryan fallon
-            </div>
-        </div>
-    </footer> -->
-    <!-- jquery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js "></script>
+    <footer class="page-footer teal lighten-1">
 
+        <a class="white-text valign-wrapper hoverable" href="https://github.com/rf-spuds" id="footerlogo" target="_blank">
+            <img src="./weatherlogo.png" alt="github cloud icon" id="ghIcon" class="responsive-img tooltipped" data-postion="top" data-tooltip="Rf-Spuds Github"></a>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-    <!-- local js file -->
-    <script src="script.js "></script>
+    <script src="script.js"></script>
+
+    <script>
+        $(document).ready(function() {
+                // $(".tooltip").tooltip();
+                $(".sidenav").sidenav({
+                    edge: "left",
+                    draggable: true,
+                });
+                $(".tooltipped").tooltip({
+                    position: "right"
+                });
+                // $('.fixed-action-btn').floatingActionButton();
+
+            })
+            //
+    </script>
 </body>
 
 
