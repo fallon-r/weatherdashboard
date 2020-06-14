@@ -38,9 +38,11 @@ $(document).ready(function() {
     var today = (new Date().getMonth() + 1) + "/" + new Date().getDate();
     var lat;
     var lon;
+    var onecall = "https://api.openweathermap.org/data/2.5/onecall?q=&exclude=hourly,daily,minutely&appid=0cfb89d760d5eaeceaeda6dff8c496
+    ";
 
 
-    // var input = document.getElementById("uCitySearch");
+    //var input = document.getElementById("uCitySearch");
     // input.addEventListener("keyup", function(event) {
     //     if (event.keyCode === 13) {
     //         event.preventDefault();
@@ -58,7 +60,6 @@ $(document).ready(function() {
         forecastQueryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + uCity + "&appid=" + key + "&units=imperial";
         $("#currentWeatherCard").show()
         UVIndexURL = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + key;
-
 
         getWeather();
         getForecast();
@@ -88,11 +89,13 @@ $(document).ready(function() {
                 $("#currentHumidity").text("Humidity " + response.main.humidity + "%");
 
 
+
+
                 // UV is a separate call and needs the lat/lon
                 lon = response.coord.lon;
                 lat = response.coord.lat;
 
-                console.log(lat)
+
             });
         });
 
@@ -123,11 +126,11 @@ $(document).ready(function() {
 
                 console.log(response.list[0].dt_txt.substr(5, 7))
                     // Render dates
-                $("#weatherCardDay1").text(response.list[0].dt_txt.substr(5, 6))
-                $("#weatherCardDay2").text(response.list[1].dt_txt.substr(5, 6))
-                $("#weatherCardDay3").text(response.list[2].dt_txt.substr(5, 6))
-                $("#weatherCardDay4").text(response.list[3].dt_txt.substr(5, 6))
-                $("#weatherCardDay5").text(response.list[4].dt_txt.substr(5, 6))
+                $("#weatherCardDay1").text(response.list[8].dt_txt.substr(5, 6))
+                $("#weatherCardDay2").text(response.list[16].dt_txt.substr(5, 6))
+                $("#weatherCardDay3").text(response.list[24].dt_txt.substr(5, 6))
+                $("#weatherCardDay4").text(response.list[32].dt_txt.substr(5, 6))
+                $("#weatherCardDay5").text(response.list[40].dt_txt.substr(5, 6))
             });
         });
     };
