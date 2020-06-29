@@ -91,8 +91,33 @@ $(document).ready(function() {
                     $("#currentTemp").text(response.current.temp + degreeUnit);
                     $("#currentHumidity").text(response.current.humidity + "%");
                     $("#currentWindSpeed").text(response.current.wind_speed+ " "+speedUnit);
+                    function UV (){
+                        $("#uvBlock").removeClass();
+                        console.log(response.current.uvi);
+                        // console.log(response.current.uvi > 2);
 
+                        if (response.current.uvi <= 2){
+                            $("#currentUV").text("Low");
 
+                            $("#uvBlock").addClass("z-depth-4 left-align col-s2 green");
+                        } else if (response.current.uvi > 2 && response.current.uvi <= 5){
+                            $("#currentUV").text("Moderate");
+                            $("#uvBlock").addClass("yellow");
+                        }else if (response.current.uvi > 5 && response.current.uvi <= 7){
+                            $("#currentUV").text("High");
+                            $("#uvBlock").addClass("z-depth-4 left-align col-s2 orange");
+
+                        }else if (response.current.uvi > 7 && response.current.uvi <= 10){
+                            $("#currentUV").text("Very High");
+                            $("#uvBlock").addClass("z-depth-4 left-align col-s2 red");
+
+                        }else if (response.current.uvi > 11){
+                            $("#currentUV").text("Extreme");
+                            $("#uvBlock").addClass("z-depth-4 left-align col-s2 purple lighten-4");
+
+                        }
+                    }
+                    UV();
                     
                 });
         };
