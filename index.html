@@ -144,23 +144,6 @@
                 $(".tooltipped").tooltip({
                     position: "right"
                 });
-                // $('.fixed-action-btn').floatingActionButton();
-                $(function() {
-                    $.ajax({
-                        type: 'GET',
-                        url: 'https://mywebsite.com/getAllcountryList',
-                        success: function(response) {
-                            var countryArray = response;
-                            var countryList = {};
-                            for (var i = 0; i < countryArray.length; i++) {
-                                countryList[countryArray[i].name] = countryArray[i];
-                            }
-                            $('input.autocomplete').autocomplete({
-                                data: countryList
-                            });
-                        }
-                    });
-                });
             })
             //
     </script>
