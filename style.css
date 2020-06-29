@@ -37,4 +37,16 @@ main {
 #forecastCards {
     min-height: 15vh;
     max-height: 15vh;
+    justify-content: center;
+    align-content: center;
+    margin: auto
+}
+
+.forecastCard{
+    align-content: center;
+    align-self: center;
+    justify-self: center;
+    justify-content: center;
+
+
 }
