@@ -2,8 +2,8 @@ $(document).ready(function() {
 
 
     var uSearches = [];
-    var key = "d083e7b9276f47f503fbf06a7f04eb88";
-    var geoKey = "43d73a28304a40129ec3c08709f5fa7b"
+    var key = process.env.weatherKey;
+    var geoKey = process.env.geoKey;
     var uCity;
     var today = (new Date().getMonth() + 1) + "/" + new Date().getDate();
     var weatherURL;
