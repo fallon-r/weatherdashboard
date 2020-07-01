@@ -2,13 +2,14 @@ $(document).ready(function() {
 
 
     var uSearches = [];
-    var key = process.env.weatherKey;
-    var geoKey = process.env.geoKey;
+    var key = "d083e7b9276f47f503fbf06a7f04eb88";
+    var geoKey = "43d73a28304a40129ec3c08709f5fa7b";
     var uCity;
     var today = (new Date().getMonth() + 1) + "/" + new Date().getDate();
     var weatherURL;
     var lat;
     var lon;
+    var iconUrl;
 
     var coordGetURL;
     var degreeUnit;
@@ -86,11 +87,16 @@ $(document).ready(function() {
                     // console.log("Just today")
                     console.log("this is the API Call for oneWeather")
                     console.log(response);
-                    // $("#currentCity").text();
+                    // condition icon var and call
+                    iconUrl = "http://openweathermap.org/img/wn/" +  response.current.weather[0].icon + "@2x.png"
+
                     $("#currentConditions").text(response.current.weather[0].main);
+
+
+                    $("#conditionIcon").attr('src', iconUrl)
                     $("#currentTemp").text(response.current.temp + degreeUnit);
-                    $("#currentHumidity").text(response.current.humidity + "%");
-                    $("#currentWindSpeed").text(response.current.wind_speed+ " "+speedUnit);
+                    $("#currentHumidity").text("Humidity: " + response.current.humidity + "%");
+                    $("#currentWindSpeed").text("Wind Speed: " +response.current.wind_speed+ " "+speedUnit);
                     function UV (){
                         $("#uvBlock").removeClass();
                         console.log(response.current.uvi);

@@ -66,14 +66,26 @@
 
                 <div class="card" id="currentWeatherCard">
                     <div class="card-content">
-                        <h1 class="card-title  grey-text text-darken-4 flow-text" id="currentCity"></h1>
-                        <h4 class="flow-text" id="currentTemp"></h4>
-                        <h3 id="currentHumidity" class="flow-text"></h3>
+                        <h2 class="card-title  grey-text text-darken-4 flow-text" id="currentCity"></h2>
+                            <div class="row">
 
-                        <h5 id="currentConditions" class="flow-text"></h5>
+                                <h4 class="flow-text" id="currentTemp"></h4>
+                            </div>
+                                <div class="row">
+
+                                <h3 id="currentHumidity" class="flow-text"></h3>
+                            </div>
+                                <div class="row valign-wrapper ">
+                                    <img class="responsive-img center-align"  alt="weather icon " id="conditionIcon" src="" ></img>
+
+                            <h4 id="currentConditions" class="flow-text right center-align"></h5>
+                        </div>
+                            
                         <h4 id="currentWindSpeed" class="flow-text"></h4>
-                        <div id="uvBlock" class="z-depth-4 left-align col-s2"></div>
-                        <h3 id="currentUV" class="flow-text right-align">></h3>
+                        <div class="row">
+                            <div id="uvBlock" class="z-depth-4 center-align col-s2 valign-wrapper"><h3 id="currentUV" class="flow-text center-align col-s2 white-text"></h3></div>
+                            
+                        </div>
                     </div>
                 </div>
 
