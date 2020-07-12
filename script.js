@@ -1,9 +1,9 @@
+
+
 $(document).ready(function() {
-
-
     var uSearches = [];
-    var key = "d083e7b9276f47f503fbf06a7f04eb88";
-    var geoKey = "43d73a28304a40129ec3c08709f5fa7b";
+    var key = "d3633455194a8c41c9085265154de322";
+    var geoKey = "3d65713016ee49468a25c081895d62af";
     var uCity;
     var today = (new Date().getMonth() + 1) + "/" + new Date().getDate();
     var weatherURL;
@@ -57,7 +57,7 @@ $(document).ready(function() {
             lon = uQuery.lon.toString();
 
             
-
+                // Renders Metric/Imperial Measurements
             if ($("#unit").is(":checked") === true){
 
                 weatherURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=hourly,minutely&units=imperial&appid=" + key;
@@ -70,8 +70,14 @@ $(document).ready(function() {
                 degreeUnit = "°C"
                 speedUnit = "km/H"
             }
-            uSearches.push(uQuery);
-            
+            // moves most recent search to first item in array.
+            uSearches.unshift(uQuery);
+
+            // removes oldest item from array
+            if (uSearches.length > 5){
+                uSearches.pop();
+
+            }
             localStorage.setItem("uSearches", JSON.stringify(uSearches))
 
             console.log(uQuery);
