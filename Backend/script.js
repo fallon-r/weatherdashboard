@@ -140,7 +140,8 @@ $(document).ready(function() {
 
         }
 
-    $("#currentWeatherCard").hide()
-
+    $("#currentWeatherCard").hide();
+    $("#forecastCards").hide();
+    $("#prevSearches").hide();
 
 });
