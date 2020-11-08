@@ -12,15 +12,15 @@ let theme =  createMuiTheme({
   palette: {
     type: 'dark',
     primary: {
-      main: '#88cc88',
-      contrastText: 'rgba(2,90,2,1)',
+      main: '#005533',
+      contrastText: 'rgba(90,200,90,1)',
     },
     secondary: {
       main: '#3de6e6',
     },
     divider: '#a5c663',
     background: {
-      default: '#004400',
+      default: '#88cc88',
       paper: '#116611',
     },
   },
