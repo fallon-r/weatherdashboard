@@ -19,9 +19,10 @@ let theme =  createMuiTheme({
       main: '#3de6e6',
     },
     divider: '#a5c663',
+
     background: {
-      default: '#88cc88',
-      paper: '#116611',
+      default: '#FFFFFF',
+      paper: '#88cc88',
     },
   },
   typography: {
