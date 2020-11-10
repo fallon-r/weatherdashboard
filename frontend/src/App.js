@@ -1,71 +1,45 @@
-import {
-  makeStyles,
-  createMuiTheme,
-  responsiveFontSizes,
-  ThemeProvider,
-} from "@material-ui/core/styles/";
-import CssBaseline from "@material-ui/core/CssBaseline";
+import React,{useState} from 'react'
+import axios from 'axios'
 
+export default function App() {
 
-import Nav from './components/Nav'
+  const [location, setLocation] = useState([])
 
-let theme =  createMuiTheme({
-  palette: {
-    type: 'dark',
-    primary: {
-      main: '#005533',
-      contrastText: 'rgba(90,200,90,1)',
-    },
-    secondary: {
-      main: '#3de6e6',
-    },
-    divider: '#a5c663',
+const handleClick = async (e) =>{
+  e.preventDefault()
+  
 
-    background: {
-      default: '#FFFFFF',
-      paper: '#88cc88',
-    },
-  },
-  typography: {
-    fontFamily: 'Play',
-    h1: {
-      fontFamily: 'Lato',
-    },
-    fontWeightRegular: 700,
-  },
-  shape: {
-    borderRadius: 4,
-  },
-  props: {
-    MuiTooltip: {
-      arrow: true,
-    },
-  },
-});
+  console.log('You clicked me')
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-    flexDirection: "column",
-    minHeight: "100vh",
-  },
-}));
+  navigator.geolocation.getCurrentPosition((e)=>{
+    const lat = e.coords.latitude;
+     const lon = e.coords.longitude;
+ 
+     const latlon = encodeURIComponent([lat,lon].join())
+    console.log(latlon)
+     return latlon
+ })
 
-theme = responsiveFontSizes(theme);
+  const url = "/reverse/coords/"
 
-function App() {
+  // axios.get(url, {json:true})
+  //   .then((res)=>{
+  //     setLocation(res.data)
+  //     console.log(res.data)
+  //   })
+  //   .catch((e)=>{
+  //     console.error('uhoh')
+  //   })
+}
 
-  const { root } = useStyles();
 
 
   return (
-    <div className={root}>
-        <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Nav />
-        </ThemeProvider>
+    <div>
+        <h1>Hi!</h1>
+        <button onClick={handleClick}>I am a button</button>
+        <p> You are here based on your browser location:</p>
+        {/* <p>{location.features.properties.components.city}</p> */}
     </div>
-  );
+  )
 }
-
-export default App;

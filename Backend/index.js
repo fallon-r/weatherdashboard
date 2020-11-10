@@ -4,11 +4,14 @@ const express = require('express')
 const axios = require('axios')
 const port = process.env.PORT || 5000
 const http = require("http")
+const cors = require('cors')
 require('dotenv').config()
 
 const app = express()
 
 const server = http.createServer(app)
+
+app.use(cors())
 
 
 const WEATHER_KEY = process.env.WEATHER_KEY
@@ -21,32 +24,34 @@ app.get('', (req,res)=>{
   res.send('All good')
 })
 
-// app.get('/test', (req,res)=>{
+app.get('/test', (req,res)=>{
   
-//   axios({
-//     url: `https://jsonplaceholder.typicode.com/todos/1`,
-//     method: "GET"
-//   })
-//   .then((response)=>{
-//     res.send(response.data)
-//   })
-//   .catch((e)=>{
-//     console.error("Somthing went wrong")
-//   })
-// })
-// app.get('/testenv', (req,res)=>{
+  console.log("I've been called")
+
+  axios({
+    url: `https://jsonplaceholder.typicode.com/todos/1`,
+    method: "GET"
+  })
+  .then((response)=>{
+    res.send(response.data)
+  })
+  .catch((e)=>{
+    console.error("Somthing went wrong")
+  })
+})
+app.get('/testenv', (req,res)=>{
   
-//   axios({
-//     url: TEST_URL,
-//     method: "GET"
-//   })
-//   .then((response)=>{
-//     res.send(response.data)
-//   })
-//   .catch((e)=>{
-//     console.error("Somthing went wrong")
-//   })
-// })
+  axios({
+    url: TEST_URL,
+    method: "GET"
+  })
+  .then((response)=>{
+    res.send(response.data)
+  })
+  .catch((e)=>{
+    console.error("Somthing went wrong")
+  })
+})
 
 
 
