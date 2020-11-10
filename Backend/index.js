@@ -61,7 +61,7 @@ app.get('/testenv', (req,res)=>{
 // * Reverse Geocoding (From Window)
 app.get('/reverse/coords/:latlong', (req, res) => {
   const {latlong} = req.params
-  const url = `https://api.opencagedata.com/geocode/v1/geojson?q=${encodeURIComponent(latlong)}&key=${GEO_KEY}&pretty=1&no_record=1`
+  const url = `https://api.opencagedata.com/geocode/v1/geojson?q=${latlong}&key=${GEO_KEY}&pretty=1&no_record=1`
   axios
     .get(url, {json: true})
     .then((response) => {

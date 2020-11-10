@@ -4,32 +4,22 @@ import axios from 'axios'
 export default function App() {
 
   const [location, setLocation] = useState([])
+  const [geo, setGeo] = useState('')
 
-const handleClick = async (e) =>{
+const handleClick =  async (e) =>{
   e.preventDefault()
   
 
-  console.log('You clicked me')
 
-  navigator.geolocation.getCurrentPosition((e)=>{
-    const lat = e.coords.latitude;
-     const lon = e.coords.longitude;
- 
-     const latlon = encodeURIComponent([lat,lon].join())
-    console.log(latlon)
-     return latlon
- })
-
-  const url = "/reverse/coords/"
-
-  // axios.get(url, {json:true})
-  //   .then((res)=>{
-  //     setLocation(res.data)
-  //     console.log(res.data)
-  //   })
-  //   .catch((e)=>{
-  //     console.error('uhoh')
-  //   })
+//  console.log(url)
+//   axios.get(url, {json:true})
+//     .then((res)=>{
+//       setLocation(res.data)
+//       console.log(res.data)
+//     })
+//     .catch((e)=>{
+//       console.error('uhoh')
+//     })
 }
 
 
