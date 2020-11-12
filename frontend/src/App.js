@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function App() {
@@ -6,36 +6,34 @@ export default function App() {
   const [location, setLocation] = useState(null);
   const [photoSrc, setPhotoSrc] = useState(null);
   const [temp, setTemp] = useState(null);
-  const [lat, setLat] = useState(null);
-  const [lon, setLon] = useState(null);
 
-  // TODO: Make Weather Call asynchronous; right now the lat and lon take too much time to be returned. I could have the state/town populate the field so that the user can verify that the town is correct. OR use the state from the button click.
+  // * Get user location on page load
+  const getCurrentPos = (options = {}) => {
+    return new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(resolve, reject, options);
+    });
+  };
+  const loadPos = async () => {
+    try {
+      const position = await getCurrentPos();
+      const { latitude, longitude } = position.coords;
+
+      const userCoords = [latitude, longitude];
+      // await console.log(`${lat}; ${lon}`)
+      await localStorage.setItem("userLocation", JSON.stringify(userCoords));
+    } catch (error) {
+      console.error("UhOH!,", error);
+    }
+  };
+  useEffect(() => {
+    loadPos();
+  }, []);
 
   const handleClick = (e) => {
     e.preventDefault();
-
-    const getCurrentPos = (options = {})=>{
-      return new Promise((resolve, reject)=>{
-        navigator.geolocation.getCurrentPosition(resolve, reject, options)
-      })
-    }
-
-    const loadPos= async () =>{
-      try {
-          const position = await getCurrentPos()
-          const {latitude, longitude} = position.coords
-
-          await setLat(latitude)
-         await  setLon(longitude)
-
-          await console.log(`${lat}; ${lon}`)
-
-      } catch (error) {
-        console.error('UhOH!,', error)
-      }
-    }
-
-    loadPos()
+    const uCoords = JSON.parse(localStorage.getItem('userLocation'))
+    console.log(uCoords[0]);
+    console.log(uCoords[1])
   };
 
   return (
