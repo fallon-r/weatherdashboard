@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {loadPos} from './utils/utils'
+import {resolveLocation} from './utils/api'
 
 export default function App() {
   // !States
@@ -18,7 +19,7 @@ export default function App() {
   }
     enableLocation()
   }, []);
-
+  // * Button toggle for location based search
   useEffect(()=>{
     if(uCoords == null){
       setButton(true)
@@ -31,6 +32,15 @@ export default function App() {
 
   const handleClick =  (e) => {
     e.preventDefault();
+    const latlon = encodeURIComponent(uCoords.join())
+
+    const getCity =  async () => {
+      const response =  await resolveLocation(latlon)
+      
+      console.log(response)
+    }
+
+    getCity()
 
     console.log(button)
     console.log(uCoords[0]);

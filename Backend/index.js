@@ -17,51 +17,14 @@ app.use(cors())
 const WEATHER_KEY = process.env.WEATHER_KEY
 const GEO_KEY = process.env.GEO_KEY
 const PHOTO_KEY = process.env.PHOTO_KEY
-const TEST_URL = process.env.TEST_URL
-
-app.get('', (req,res)=>{
-  res.status(200)
-  res.send('All good')
-})
-
-app.get('/test', (req,res)=>{
-  
-  console.log("I've been called")
-
-  axios({
-    url: `https://jsonplaceholder.typicode.com/todos/1`,
-    method: "GET"
-  })
-  .then((response)=>{
-    res.send(response.data)
-  })
-  .catch((e)=>{
-    console.error("Somthing went wrong")
-  })
-})
-app.get('/testenv', (req,res)=>{
-  
-  axios({
-    url: TEST_URL,
-    method: "GET"
-  })
-  .then((response)=>{
-    res.send(response.data)
-  })
-  .catch((e)=>{
-    console.error("Somthing went wrong")
-  })
-})
 
 
 
-
-
-
-// * Reverse Geocoding (From Window)
+// * Reverse Geocoding (From userCoords)
 app.get('/reverse/coords/:latlong', (req, res) => {
   const {latlong} = req.params
   const url = `https://api.opencagedata.com/geocode/v1/geojson?q=${latlong}&key=${GEO_KEY}&pretty=1&no_record=1`
+  
   axios
     .get(url, {json: true})
     .then((response) => {
