@@ -8,9 +8,9 @@ const Content = () => {
 
 
   return (
-      <Container>
+      <Container  alignItems="center" >
 
-    <Grid  direction="column" justify="center" alignItems="center">
+    <Grid >
       <Grid item xs={12}>
         <Paper style={{ minHeight: "55vh" }}>
           <h1>I am the paper, now</h1>

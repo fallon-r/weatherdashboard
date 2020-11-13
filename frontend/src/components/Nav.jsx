@@ -5,7 +5,6 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
-import Button from "@material-ui/core/Button";
 import InputBase from "@material-ui/core/InputBase";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -51,18 +50,7 @@ export default function ButtonAppBar() {
 
   // * Drawer Toggle
   const drawerToggle = () => setDrawerOpen(!drawerOpen);
-  // * Populate Drawer
-  const drawerPop = ()=>{
-    return(
-      searchHist.map((search, index)=>{
-      <Button key={index}>{search}</Button>
-      })
-    )
-  }
 
-  useEffect(() => {
-    drawerPop(searchHist)
-  }, [searchHist])
 
   // * Get user location on page load
   useEffect(() => {
@@ -89,6 +77,9 @@ export default function ButtonAppBar() {
       setSearchButton(false);
     }
   }, [uSearch]);
+// *______________________________________
+
+// * Button Handlers 
 
   const locationClick = (e) => {
     e.preventDefault();
@@ -97,9 +88,11 @@ export default function ButtonAppBar() {
     console.log(uCoords[0]);
     console.log(uCoords[1]);
   };
+
   const searchSubmit = (e) => {
     e.preventDefault();
 
+    // ! Keeps stored searches to <10
     console.log(uSearch);
     let updatedHist = searchHist
     if(updatedHist.length >= 10){
@@ -110,7 +103,7 @@ export default function ButtonAppBar() {
     console.log(searchHist)
     localStorage.setItem("SearchHist", JSON.stringify(searchHist))
   };
-
+// *_______________________________________
   return (
     <>
       <AppBar position="static">
@@ -154,7 +147,7 @@ export default function ButtonAppBar() {
         </Toolbar>
       </AppBar>
 
-      <Drawer openSecondary={true} open={drawerOpen}>
+      <Drawer  open={drawerOpen}>
         <IconButton
           color="secondary"
           className={classes.iconButton}
@@ -165,7 +158,7 @@ export default function ButtonAppBar() {
           <CloseIcon />
         </IconButton>
         <div className={classes.drawerContents}>
-          {drawerPop()}
+        
         </div>
       </Drawer>
     </>
