@@ -5,7 +5,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
-import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
 import InputBase from "@material-ui/core/InputBase";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
 export default function ButtonAppBar() {
   const classes = useStyles();
 
+  const [searchHist, setSearchHist] = useState([])
   const [uSearch, setUsearch] = useState("");
   const [uCoords, setUCoords] = useState(null);
   const [searchButton, setSearchButton] = useState(true);
@@ -50,6 +51,18 @@ export default function ButtonAppBar() {
 
   // * Drawer Toggle
   const drawerToggle = () => setDrawerOpen(!drawerOpen);
+  // * Populate Drawer
+  const drawerPop = ()=>{
+    return(
+      searchHist.map((search, index)=>{
+      <Button key={index}>{search}</Button>
+      })
+    )
+  }
+
+  useEffect(() => {
+    drawerPop(searchHist)
+  }, [searchHist])
 
   // * Get user location on page load
   useEffect(() => {
@@ -88,8 +101,14 @@ export default function ButtonAppBar() {
     e.preventDefault();
 
     console.log(uSearch);
-
-    localStorage.setItem(`${uSearch}`, JSON.stringify(`${uSearch}`));
+    let updatedHist = searchHist
+    if(updatedHist.length >= 10){
+      updatedHist.shift()
+    }
+    updatedHist.push(uSearch)
+    setSearchHist(updatedHist)    
+    console.log(searchHist)
+    localStorage.setItem("SearchHist", JSON.stringify(searchHist))
   };
 
   return (
@@ -145,12 +164,12 @@ export default function ButtonAppBar() {
         >
           <CloseIcon />
         </IconButton>
-        <div className={classes.drawerContents}></div>
+        <div className={classes.drawerContents}>
+          {drawerPop()}
+        </div>
       </Drawer>
     </>
   );
 }
 
-// TODO: Fix drawer;
 // TODO: add skeleton for retrieved queries (https://material-ui.com/components/skeleton/).
-// TODO : Review (https://material-ui.com/components/text-fields/) for actual search bar
