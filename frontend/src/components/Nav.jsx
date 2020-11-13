@@ -1,152 +1,135 @@
-import React, {useState} from 'react'
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import Box from '@material-ui/core/Box';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Link from '@material-ui/core/Link';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-
-
-const drawerWidth = 240;
+import React, {useState, useEffect} from "react";
+import { loadPos } from "../utils/utils";
+import { makeStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Divider from "@material-ui/core/Divider";
+import InputBase from "@material-ui/core/InputBase";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import SearchIcon from "@material-ui/icons/Search";
+import LocationOnIcon from "@material-ui/icons/LocationOnSharp";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
-  toolbar: {
-    paddingRight: 24, // keep right padding when drawer closed
-  },
-  toolbarIcon: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: '0 8px',
-    ...theme.mixins.toolbar,
-  },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
   menuButton: {
-    marginRight: 36,
-  },
-  menuButtonHidden: {
-    display: 'none',
+    marginRight: theme.spacing(2),
   },
   title: {
     flexGrow: 1,
   },
-  drawerPaper: {
+  input: {
+    marginLeft: 'auto',
+    flex: 1,
+    maxWidth: '50vw',
     position: 'relative',
-    whiteSpace: 'nowrap',
-    width: drawerWidth,
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
   },
-  drawerPaperClose: {
-    overflowX: 'hidden',
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    width: theme.spacing(7),
-    [theme.breakpoints.up('sm')]: {
-      width: theme.spacing(9),
-    },
+  iconButton: {
+    padding: 10,
   },
-  appBarSpacer: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    height: '100vh',
-    overflow: 'auto',
-  },
-  container: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
-  },
-  paper: {
-    padding: theme.spacing(2),
-    display: 'flex',
-    overflow: 'auto',
-    flexDirection: 'column',
-  },
-  fixedHeight: {
-    height: 240,
+  divider: {
+    height: 28,
+    margin: 4,
   },
 }));
 
+export default function ButtonAppBar() {
+  const classes = useStyles();
 
-const Nav = () => {
+  const [uSearch, setUsearch] = useState('')
+  const [uCoords, setUCoords] = useState(null);
+  const [searchButton, setSearchButton] = useState(true);
+  const [locButton, setLocButton] = useState(true);
 
-    const classes = useStyles();
-    const [open, setOpen] = useState(true);
-    const handleDrawerOpen = () => {
-      setOpen(true);
+  // * Get user location on page load
+  useEffect(() => {
+    const enableLocation = async () => {
+      await loadPos();
+      await setUCoords(JSON.parse(localStorage.getItem("userLocation")));
     };
-    const handleDrawerClose = () => {
-      setOpen(false);
-    };
-    const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+    enableLocation();
+  }, []);
+  
+  // * Button toggle for location / search
+  useEffect(() => {
+    if (uCoords == null) {
+      setLocButton(true);
+    } else {
+      setLocButton(false);
+    }
+  }, [uCoords]);
 
-    return (
-        <div>
-             <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
-        <Toolbar className={classes.toolbar}>
+  useEffect(() => {
+    if (uSearch === '') {
+      setSearchButton(true);
+    } else {
+      setSearchButton(false);
+    }
+  }, [uSearch]);
+
+  const locationClick = (e) => {
+    e.preventDefault();
+    // const latlon = encodeURIComponent(uCoords.join());
+
+    
+    console.log(uCoords[0]);
+    console.log(uCoords[1]);
+  };
+  const searchSubmit = (e) => {
+    e.preventDefault();
+
+    console.log(uSearch);
+
+    localStorage.setItem(`${uSearch}`, JSON.stringify(`${uSearch}`))
+
+
+  };
+
+  return (
+    <>
+      <AppBar position="static">
+        <Toolbar>
           <IconButton
             edge="start"
+            className={classes.menuButton}
             color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
+            aria-label="menu"
           >
             <MenuIcon />
           </IconButton>
-          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Dashboard
-          </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
+        
+          <InputBase
+            className={classes.input}
+            placeholder="Search Weather"
+            inputProps={{ "aria-label": "search for weather" }}
+            id="search"
+            onChange={e => setUsearch(e.target.value)}
+            required
+          />
+          <IconButton
+            type="submit"
+            className={classes.iconButton}
+            aria-label="search"
+            disabled={searchButton}
+            onClick={searchSubmit}
+          >
+            <SearchIcon />
+          </IconButton>
+          <Divider className={classes.divider} orientation="vertical" />
+          <IconButton
+            color="secondary"
+            className={classes.iconButton}
+            aria-label="local weather"
+            onClick={locationClick}
+            disabled={locButton}
+          >
+            <LocationOnIcon />
           </IconButton>
         </Toolbar>
       </AppBar>
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-        }}
-        open={open}
-      >
-       
-      </Drawer>
-        </div>
-    )
+    </>
+  );
 }
 
-export default Nav
+// TODO: Fix drawer;
+// TODO: add skeleton for retrieved queries (https://material-ui.com/components/skeleton/).
+// TODO : Review (https://material-ui.com/components/text-fields/) for actual search bar
