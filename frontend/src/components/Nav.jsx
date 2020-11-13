@@ -1,14 +1,17 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { loadPos } from "../utils/utils";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Divider from "@material-ui/core/Divider";
+import Drawer from "@material-ui/core/Drawer";
+import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import LocationOnIcon from "@material-ui/icons/LocationOnSharp";
+import CloseIcon from "@material-ui/icons/Close";
 
 const useStyles = makeStyles((theme) => ({
   menuButton: {
@@ -18,10 +21,10 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   input: {
-    marginLeft: 'auto',
+    marginLeft: "auto",
     flex: 1,
-    maxWidth: '50vw',
-    position: 'relative',
+    maxWidth: "50vw",
+    position: "relative",
   },
   iconButton: {
     padding: 10,
@@ -30,15 +33,23 @@ const useStyles = makeStyles((theme) => ({
     height: 28,
     margin: 4,
   },
+  drawerContents: {
+    position: "relative",
+    minWidth: "50vw",
+  },
 }));
 
 export default function ButtonAppBar() {
   const classes = useStyles();
 
-  const [uSearch, setUsearch] = useState('')
+  const [uSearch, setUsearch] = useState("");
   const [uCoords, setUCoords] = useState(null);
   const [searchButton, setSearchButton] = useState(true);
   const [locButton, setLocButton] = useState(true);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  // * Drawer Toggle
+  const drawerToggle = () => setDrawerOpen(!drawerOpen);
 
   // * Get user location on page load
   useEffect(() => {
@@ -48,7 +59,7 @@ export default function ButtonAppBar() {
     };
     enableLocation();
   }, []);
-  
+
   // * Button toggle for location / search
   useEffect(() => {
     if (uCoords == null) {
@@ -59,7 +70,7 @@ export default function ButtonAppBar() {
   }, [uCoords]);
 
   useEffect(() => {
-    if (uSearch === '') {
+    if (uSearch === "") {
       setSearchButton(true);
     } else {
       setSearchButton(false);
@@ -70,7 +81,6 @@ export default function ButtonAppBar() {
     e.preventDefault();
     // const latlon = encodeURIComponent(uCoords.join());
 
-    
     console.log(uCoords[0]);
     console.log(uCoords[1]);
   };
@@ -79,9 +89,7 @@ export default function ButtonAppBar() {
 
     console.log(uSearch);
 
-    localStorage.setItem(`${uSearch}`, JSON.stringify(`${uSearch}`))
-
-
+    localStorage.setItem(`${uSearch}`, JSON.stringify(`${uSearch}`));
   };
 
   return (
@@ -93,16 +101,16 @@ export default function ButtonAppBar() {
             className={classes.menuButton}
             color="inherit"
             aria-label="menu"
+            onClick={drawerToggle}
           >
             <MenuIcon />
           </IconButton>
-        
           <InputBase
             className={classes.input}
             placeholder="Search Weather"
             inputProps={{ "aria-label": "search for weather" }}
             id="search"
-            onChange={e => setUsearch(e.target.value)}
+            onChange={(e) => setUsearch(e.target.value)}
             required
           />
           <IconButton
@@ -126,6 +134,19 @@ export default function ButtonAppBar() {
           </IconButton>
         </Toolbar>
       </AppBar>
+
+      <Drawer openSecondary={true} open={drawerOpen}>
+        <IconButton
+          color="secondary"
+          className={classes.iconButton}
+          aria-label="close drawer"
+          onClick={drawerToggle}
+          edge="end"
+        >
+          <CloseIcon />
+        </IconButton>
+        <div className={classes.drawerContents}></div>
+      </Drawer>
     </>
   );
 }
