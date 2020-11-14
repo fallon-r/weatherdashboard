@@ -11,6 +11,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import LocationOnIcon from "@material-ui/icons/LocationOnSharp";
 import CloseIcon from "@material-ui/icons/Close";
+import DrawerContents from "./DrawerContents"
 
 const useStyles = makeStyles((theme) => ({
   menuButton: {
@@ -158,7 +159,7 @@ export default function ButtonAppBar() {
           <CloseIcon />
         </IconButton>
         <div className={classes.drawerContents}>
-        
+            <DrawerContents />
         </div>
       </Drawer>
     </>
