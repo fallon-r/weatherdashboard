@@ -52,6 +52,8 @@ export default function ButtonAppBar() {
   // * Drawer Toggle
   const drawerToggle = () => setDrawerOpen(!drawerOpen);
 
+  
+
 
   // * Get user location on page load
   useEffect(() => {
@@ -78,6 +80,15 @@ export default function ButtonAppBar() {
       setSearchButton(false);
     }
   }, [uSearch]);
+  useEffect(()=>{
+    if(localStorage.getItem('SearchHist') !== null){
+
+      setSearchHist(JSON.parse(localStorage.getItem('SearchHist')))
+
+    }
+  }, [])
+
+
 // *______________________________________
 
 // * Button Handlers 
@@ -95,6 +106,9 @@ export default function ButtonAppBar() {
 
     // ! Keeps stored searches to <10
     console.log(uSearch);
+
+
+
     let updatedHist = searchHist
     if(updatedHist.length >= 10){
       updatedHist.shift()

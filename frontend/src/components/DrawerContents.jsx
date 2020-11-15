@@ -14,12 +14,12 @@ const DrawerContents = () => {
     return (
         <>
           <List component="nav" aria-label="Search History">
-                {update.map((searchHistory, index) => (
-            <ListItem button key={index}>
+                {update? update.map((searchHistory, index) => (
+            <ListItem button key={index}> 
 
                     <ListItemText primary={searchHistory} />
             </ListItem>
-                ))}
+                )):null}
        
       </List>  
         </>
