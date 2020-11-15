@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ButtonAppBar() {
+export default function Nav(props) {
   const classes = useStyles();
 
   const [searchHist, setSearchHist] = useState([])
@@ -80,15 +80,6 @@ export default function ButtonAppBar() {
       setSearchButton(false);
     }
   }, [uSearch]);
-  useEffect(()=>{
-    if(localStorage.getItem('SearchHist') !== null){
-
-      setSearchHist(JSON.parse(localStorage.getItem('SearchHist')))
-
-    }
-  }, [])
-
-
 // *______________________________________
 
 // * Button Handlers 
@@ -96,7 +87,7 @@ export default function ButtonAppBar() {
   const locationClick = (e) => {
     e.preventDefault();
     // const latlon = encodeURIComponent(uCoords.join());
-
+    console.warn(props.state)
     console.log(uCoords[0]);
     console.log(uCoords[1]);
   };
@@ -106,9 +97,6 @@ export default function ButtonAppBar() {
 
     // ! Keeps stored searches to <10
     console.log(uSearch);
-
-
-
     let updatedHist = searchHist
     if(updatedHist.length >= 10){
       updatedHist.shift()

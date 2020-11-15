@@ -4,12 +4,12 @@ import Container from "@material-ui/core/Container"
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 
-const Content = () => {
+const Content = (props) => {
 
-
+  console.log(props)
 
   return (
-      <Container maxWidth='xl'>
+      <Container maxWidth="md">
 
     <Grid container justify="center" alignItems="center">
       <Grid item xs={12} style={{paddingBottom:'4vh', paddingTop:'4vh'}}>

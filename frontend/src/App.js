@@ -1,3 +1,4 @@
+import React,{useState, useEffect} from 'react'
 import { resolveLocation } from "./utils/api";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import {
@@ -42,17 +43,19 @@ theme = responsiveFontSizes(theme);
 export default function App() {
   const { root } = useStyles();
 
+
   // !States
+  const [statey, setStatey] = useState('A string')
   // const [location, setLocation] = useState(null);
   // const [photoSrc, setPhotoSrc] = useState(null);
   // const [temp, setTemp] = useState(null);
 
 
   return (
-    <div className="root">
+    <div className={root}>
          <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Nav />
+        <Nav state={statey}/>
         <Content />
       </ThemeProvider>
     </div>
