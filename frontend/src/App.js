@@ -20,7 +20,7 @@ let theme = createMuiTheme({
     },
     background: {
       default: "#ccc",
-      paper: "#ddd",
+      paper: "rgba(221, 221, 221, 0.5)",
     },
     divider: "#1a237e",
   },
