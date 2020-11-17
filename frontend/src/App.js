@@ -46,6 +46,7 @@ export default function App() {
 
   // !States
   const [statey, setStatey] = useState('A string')
+  const [foo, setFoo] = useState('Bar')
   // const [location, setLocation] = useState(null);
   // const [photoSrc, setPhotoSrc] = useState(null);
   // const [temp, setTemp] = useState(null);
@@ -55,7 +56,7 @@ export default function App() {
     <div className={root}>
          <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Nav state={statey}/>
+        <Nav state={statey} foo={foo}/>
         <Content />
       </ThemeProvider>
     </div>

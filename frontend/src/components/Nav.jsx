@@ -88,6 +88,7 @@ export default function Nav(props) {
     e.preventDefault();
     // const latlon = encodeURIComponent(uCoords.join());
     console.warn(props.state)
+    console.warn(props.foo)
     console.log(uCoords[0]);
     console.log(uCoords[1]);
   };
