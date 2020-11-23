@@ -48,6 +48,16 @@ const Content = (props) => {
              <CardContent>Text</CardContent>
            </Card>
           </Grid>
+          <Grid item >
+           <Card>
+             <CardContent>Text</CardContent>
+           </Card>
+          </Grid>
+          <Grid item >
+           <Card>
+             <CardContent>Text</CardContent>
+           </Card>
+          </Grid>
         </Grid>
       </Grid>
     </Grid>

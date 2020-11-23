@@ -109,7 +109,6 @@ export default function Nav(props) {
     }
     updatedHist.splice(0,0, uSearch)
     setSearchHist(updatedHist)    
-    console.log(searchHist)
     localStorage.setItem("SearchHist", JSON.stringify(searchHist))
   };
 // *_______________________________________
@@ -175,4 +174,3 @@ export default function Nav(props) {
   );
 }
 
-// TODO: add skeleton for retrieved queries (https://material-ui.com/components/skeleton/).
