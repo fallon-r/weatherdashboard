@@ -21,7 +21,7 @@ let theme = createMuiTheme({
     },
     background: {
       default: "#ccc",
-      paper: "rgba(221, 221, 221, 0.5)",
+      paper: "rgba(221, 221, 221, 1)",
     },
     divider: "#1a237e",
   },
@@ -56,7 +56,7 @@ export default function App() {
     <div className={root}>
          <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Nav state={statey} foo={foo}/>
+        <Nav />
         <Content />
       </ThemeProvider>
     </div>

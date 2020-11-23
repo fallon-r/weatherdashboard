@@ -82,13 +82,19 @@ export default function Nav(props) {
   }, [uSearch]);
 // *______________________________________
 
+// * Retrieve History
+  useEffect(()=>{
+    if(JSON.parse(localStorage.getItem('SearchHist')) != null){
+      setSearchHist(JSON.parse(localStorage.getItem('SearchHist')))
+    }
+  }, [])
+
+
 // * Button Handlers 
 
   const locationClick = (e) => {
     e.preventDefault();
     // const latlon = encodeURIComponent(uCoords.join());
-    console.warn(props.state)
-    console.warn(props.foo)
     console.log(uCoords[0]);
     console.log(uCoords[1]);
   };
@@ -97,12 +103,11 @@ export default function Nav(props) {
     e.preventDefault();
 
     // ! Keeps stored searches to <10
-    console.log(uSearch);
     let updatedHist = searchHist
     if(updatedHist.length >= 10){
       updatedHist.shift()
     }
-    updatedHist.push(uSearch)
+    updatedHist.splice(0,0, uSearch)
     setSearchHist(updatedHist)    
     console.log(searchHist)
     localStorage.setItem("SearchHist", JSON.stringify(searchHist))
@@ -124,6 +129,7 @@ export default function Nav(props) {
           <InputBase
             className={classes.input}
             placeholder="Search Weather"
+            color="secondary"
             inputProps={{ "aria-label": "search for weather" }}
             id="search"
             onChange={(e) => setUsearch(e.target.value)}
