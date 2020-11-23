@@ -13,29 +13,37 @@ const Content = (props) => {
       <Container maxWidth="md">
       
     <Grid container justify="center" alignItems="center">
-      <Grid item xs={12} style={{paddingBottom:'4vh', paddingTop:'4vh'}}>
+      <Grid item xs={12} style={{paddingBottom:'4vh', paddingTop:'3vh'}}>
         <Container style={{backgroundImage:'url(https://images.unsplash.com/photo-1560930950-5cc20e80e392?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjE4MTYxOH0)',backgroundSize:'cover', backgroundRepeat:'no-repeat', backgroundPosition:'center', backgroundColor:'transparent'}}>
 
         <Card style={{ minHeight: "55vh", textAlign:'center', backgroundColor:'rgba(222, 222, 222, 0.5)'}} >
           <CardContent>
-            {weatherData.current.temp}
+            <h3>Antarctica </h3> <br/>
+            {weatherData.current.temp} &deg; F<br/>
+            {weatherData.humidity}  % <br />
+            {`Wind Speed : ${weatherData.current.wind_speed} mph`} <br />
+            <img src={`http://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}@2x.png`} /> <br />
+            {weatherData.current.weather[0].description} <br />
+            UV
           </CardContent>
         </Card>
         </Container>
       </Grid>
       <Grid item xs={12}>
-        <Grid container direction="row" justify="space-evenly" alignItems="stretch" style={{paddingBottom:'2vh'}}>
+        <Grid container justify="space-evenly" alignItems="stretch" style={{paddingBottom:'1vh'}}>
           {
             forecast.map((day, index)=> {return (
 
-              <Grid item key={index}>
+              <Grid item key={index} xs={12} md={2}>
                 <Card>
                   <CardContent>
                     {new Date(day.dt * 1000).toLocaleString().substr(0,5)}
+                    {day.temp.day} <br/>
+                    <img src={`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`} />
                   </CardContent>
                 </Card>
               </Grid>
-            )}, 1
+            )}
             )
           }
         </Grid>

@@ -114,7 +114,7 @@ export default function Nav(props) {
 // *_______________________________________
   return (
     <>
-      <AppBar position="static">
+      <AppBar position="sticky">
         <Toolbar>
           <IconButton
             edge="start"
