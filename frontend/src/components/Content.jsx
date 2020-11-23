@@ -2,10 +2,12 @@ import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container"
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
+import {weatherData} from "../utils/testdata"
 
 
 const Content = (props) => {
 
+  const forecast = weatherData.daily.slice(1,6)
 
   return (
       <Container maxWidth="md">
@@ -16,48 +18,26 @@ const Content = (props) => {
 
         <Card style={{ minHeight: "55vh", textAlign:'center', backgroundColor:'rgba(222, 222, 222, 0.5)'}} >
           <CardContent>
-            Main Text
+            {weatherData.current.temp}
           </CardContent>
         </Card>
         </Container>
       </Grid>
       <Grid item xs={12}>
-        <Grid container direction="row" justify="space-between" alignItems="stretch" style={{paddingBottom:'2vh'}}>
-          <Grid item >
-            <Card>
-              <CardContent>Text</CardContent>
-            </Card>
-          </Grid>
-          <Grid item >
-           <Card>
-             <CardContent>Text</CardContent>
-           </Card>
-          </Grid>
-          <Grid item >
-           <Card>
-             <CardContent>Text</CardContent>
-           </Card>
-          </Grid>
-          <Grid item >
-            <Card>
-              <CardContent>Text</CardContent>
-            </Card>
-          </Grid>
-          <Grid item >
-           <Card>
-             <CardContent>Text</CardContent>
-           </Card>
-          </Grid>
-          <Grid item >
-           <Card>
-             <CardContent>Text</CardContent>
-           </Card>
-          </Grid>
-          <Grid item >
-           <Card>
-             <CardContent>Text</CardContent>
-           </Card>
-          </Grid>
+        <Grid container direction="row" justify="space-evenly" alignItems="stretch" style={{paddingBottom:'2vh'}}>
+          {
+            forecast.map((day, index)=> {return (
+
+              <Grid item key={index}>
+                <Card>
+                  <CardContent>
+                    {new Date(day.dt * 1000).toLocaleString().substr(0,5)}
+                  </CardContent>
+                </Card>
+              </Grid>
+            )}, 1
+            )
+          }
         </Grid>
       </Grid>
     </Grid>
