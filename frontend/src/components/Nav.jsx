@@ -51,7 +51,6 @@ export default function Nav(props) {
 
   // * Drawer Toggle
   const drawerToggle = () => setDrawerOpen(!drawerOpen);
-
   
 
 
@@ -156,6 +155,7 @@ export default function Nav(props) {
         </Toolbar>
       </AppBar>
 
+
       <Drawer  open={drawerOpen}>
         <IconButton
           color="secondary"
@@ -170,6 +170,7 @@ export default function Nav(props) {
             <DrawerContents />
         </div>
       </Drawer>
+
     </>
   );
 }
