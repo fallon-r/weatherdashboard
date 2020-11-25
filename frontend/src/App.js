@@ -7,6 +7,8 @@ import {
   responsiveFontSizes,
   ThemeProvider,
 } from "@material-ui/core/styles/";
+import {photoRes, weatherData} from "./utils/testdata"
+import './utils/style.css'
 import Nav from './components/Nav'
 import Content from './components/Content'
 
@@ -57,7 +59,7 @@ export default function App() {
          <ThemeProvider theme={theme}>
         <CssBaseline />
         <Nav />
-        <Content />
+        <Content weatherData={weatherData} photoRes={photoRes}/>
       </ThemeProvider>
     </div>
   );

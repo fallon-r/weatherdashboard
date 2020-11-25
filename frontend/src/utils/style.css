@@ -1,0 +1,22 @@
+.city {
+    font-size: 1.6rem;
+    margin: 0;
+}
+
+.details {
+    font-size: 1rem;
+    margin: 0
+}
+.conditions{
+    text-transform: capitalize;
+}
+
+.forecastIcon{
+    max-width: 100%;
+    height: auto;
+    padding-bottom: 1vh;
+}
+
+.forecastText {
+    font-size: 1rem;
+}
