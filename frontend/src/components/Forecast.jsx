@@ -1,6 +1,7 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
+import Tooltip from "@material-ui/core/Tooltip"
 import CardContent from "@material-ui/core/CardContent";
 
 const Forecast = (props) => {
@@ -23,11 +24,14 @@ const Forecast = (props) => {
                     {new Date(day.dt * 1000).toLocaleString().substr(0, 5)}
                   </Grid>
                   <Grid item xs={12}>
+                    <Tooltip title={day.weather[0].description} placement="top">
+
                     <img
                       src={`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
                       className="forecast-icon"
                       aria-label={day.weather[0].description}
-                    />
+                      />
+                      </Tooltip>
                   </Grid>
                   <Grid item xs={12} className="forecastText">
                     {day.temp.min} &deg; / {day.temp.max} &deg;
