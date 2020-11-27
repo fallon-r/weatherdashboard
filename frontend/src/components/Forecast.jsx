@@ -11,12 +11,12 @@ const Forecast = (props) => {
       {forecast.map((day, index) => {
         return (
           <Grid item key={index} xs={12} md={2}>
-            <Card>
-              <CardContent>
+            <Card style={{border: "groove 1px", marginBottom:"2vh"}}>
+              <CardContent style={{paddingBottom:".5vh", paddingTop:"0.5vh"}}>
                 <Grid
                   container
                   direction="column"
-                  justify="center"
+                  justify="space-evenly"
                   alignItems="stretch"
                   style={{textAlign:"center"}}
                 >
@@ -24,7 +24,7 @@ const Forecast = (props) => {
                     {new Date(day.dt * 1000).toLocaleString().substr(0, 5)}
                   </Grid>
                   <Grid item xs={12}>
-                    <Tooltip title={day.weather[0].description} placement="top">
+                    <Tooltip className="conditions" title={day.weather[0].description} placement="top">
 
                     <img
                       src={`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}

@@ -21,6 +21,9 @@ const PHOTO_KEY = process.env.PHOTO_KEY
 
 
 // * Reverse Geocoding (From userCoords)
+
+
+
 app.get('/reverse/coords/:latlong', (req, res) => {
   const {latlong} = req.params
   const url = `https://api.opencagedata.com/geocode/v1/geojson?q=${latlong}&key=${GEO_KEY}&pretty=1&no_record=1`

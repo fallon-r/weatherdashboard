@@ -59,46 +59,41 @@ const Current = (props) => {
               spacing={1}
             >
               <Grid item xs={12} sm={12}>
-                <p className="city">Antarctica </p> 
+                <p className="city">Antarctica </p>
               </Grid>
               <Grid item xs={12} sm={6} md={3}>
                 <p className="details">
-                  {props.weatherData.current.temp} &deg; F
+                  {props.weatherData.current.temp} &deg; F / Real Feel {props.weatherData.current.feels_like}  &deg; F
                 </p>
-                
               </Grid>
               <Grid item xs={12} sm={6} md={3}>
-
-              <p className="details">{props.weatherData.current.humidity} % </p>
+                <p className="details">
+                  Humidity : {props.weatherData.current.humidity} %
+                </p>
               </Grid>
-
               <Grid item xs={12} sm={6} md={3}>
-              
-              <p className="details">
-                {`Wind Speed : ${props.weatherData.current.wind_speed} mph`}{" "}
-              </p>
+                <p className="details">
+                  {`Wind Speed : ${props.weatherData.current.wind_speed} mph`}
+                </p>
               </Grid>
               <img
                 src={`http://openweathermap.org/img/wn/${props.weatherData.current.weather[0].icon}@2x.png`}
-              />{" "}
-                            <Grid item xs={12} sm={6} md={3}>
-
-              <p className="conditions details">
-                {props.weatherData.current.weather[0].description}{" "}
-              </p>
+               alt={props.weatherData.current.weather[0].description}/>{" "}
+              <Grid item xs={12} sm={6} md={3}>
+                <p className="conditions details">
+                  {props.weatherData.current.weather[0].description}
+                </p>
               </Grid>
               <Grid item xs={12} sm={6} md={3}>
-
-              UV:
-              <Paper
-                style={{
-                  backgroundColor: uvBlock[0],
-                  maxHeight: "15%",
-                  width: "auto",
-                }}
-              >
-                {uvBlock[1]}
-              </Paper>
+                <Paper
+                  style={{
+                    backgroundColor: uvBlock[0],
+                    maxHeight: "15%",
+                    width: "auto",
+                  }}
+                >
+                  UVI: {uvBlock[1]}
+                </Paper>
               </Grid>
             </Grid>
           </CardContent>

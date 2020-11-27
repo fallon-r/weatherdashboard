@@ -15,7 +15,7 @@ const DrawerContents = () => {
         <>
           <List component="nav" aria-label="Search History">
                 {update? update.map((searchHistory, index) => (
-            <ListItem button outlined key={index}> 
+            <ListItem button divider outlined key={index} onClick={(e)=>{console.log(searchHistory)}}> 
 
                     <ListItemText primary={searchHistory} />
             </ListItem>

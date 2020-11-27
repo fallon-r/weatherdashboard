@@ -14,9 +14,14 @@
 .forecastIcon{
     max-width: 100%;
     height: auto;
-    padding-bottom: 1vh;
 }
 
 .forecastText {
     font-size: 1rem;
+}
+.currentBody{
+    height: fit-content;
+    min-height: 100%;
+    padding: auto;
+    margin-top: 20%;
 }

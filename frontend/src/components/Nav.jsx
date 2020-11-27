@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { loadPos } from "../utils/utils";
 import { makeStyles } from "@material-ui/core/styles";
+import Tooltip from "@material-ui/core/Tooltip"
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Divider from "@material-ui/core/Divider";
@@ -25,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
     maxWidth: "50vw",
     position: "relative",
+    color: "secondary"
   },
   iconButton: {
     padding: 10,
@@ -115,6 +117,7 @@ export default function Nav(props) {
     <>
       <AppBar position="sticky">
         <Toolbar>
+          <Tooltip title="View previous searches" placement="bottom">
           <IconButton
             edge="start"
             className={classes.menuButton}
@@ -122,17 +125,22 @@ export default function Nav(props) {
             aria-label="menu"
             onClick={drawerToggle}
           >
+
             <MenuIcon />
           </IconButton>
+            </Tooltip>
           <InputBase
             className={classes.input}
             placeholder="Search Weather"
+            autoFocus
             color="secondary"
             inputProps={{ "aria-label": "search for weather" }}
             id="search"
             onChange={(e) => setUsearch(e.target.value)}
+            style={{border:"groove 1px rgba(255,255,255,0.6", paddingLeft:"1vw"}}
             required
           />
+            <Tooltip title="Search for a city" placement="bottom">
           <IconButton
             type="submit"
             className={classes.iconButton}
@@ -140,9 +148,12 @@ export default function Nav(props) {
             disabled={searchButton}
             onClick={searchSubmit}
           >
+
             <SearchIcon />
           </IconButton>
+            </Tooltip>
           <Divider className={classes.divider} orientation="vertical" />
+          <Tooltip title="Get your location's weather" placement="bottom">
           <IconButton
             color="secondary"
             className={classes.iconButton}
@@ -150,8 +161,10 @@ export default function Nav(props) {
             onClick={locationClick}
             disabled={locButton}
           >
+
             <LocationOnIcon />
           </IconButton>
+            </Tooltip>
         </Toolbar>
       </AppBar>
 
