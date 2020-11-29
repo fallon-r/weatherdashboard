@@ -137,7 +137,7 @@ export default function Nav(props) {
             inputProps={{ "aria-label": "search for weather" }}
             id="search"
             onChange={(e) => setUsearch(e.target.value)}
-            style={{border:"groove 1px rgba(255,255,255,0.6", paddingLeft:"1vw"}}
+            style={{border:"groove 1px rgba(255,255,255,0.6", borderRadius:"10px",paddingLeft:"1vw",backgroundColor:"rgba(214, 242, 255, 0.65)"}}
             required
           />
             <Tooltip title="Search for a city" placement="bottom">
@@ -169,13 +169,14 @@ export default function Nav(props) {
       </AppBar>
 
 
-      <Drawer  open={drawerOpen}>
+      <Drawer  open={drawerOpen} variant="temporary" onEscapeKeyDown={drawerToggle} onBackdropClick={drawerToggle}>
         <IconButton
           color="secondary"
           className={classes.iconButton}
           aria-label="close drawer"
           onClick={drawerToggle}
-          edge="end"
+          edge="start"
+          style={{paddingRight:"0"}}
         >
           <CloseIcon />
         </IconButton>
